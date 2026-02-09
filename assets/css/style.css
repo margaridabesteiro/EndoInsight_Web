@@ -1211,3 +1211,86 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* Adicionar ao style.css existente */
+
+/* Estilos para notificações */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    transform: translateX(150%);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 400px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-success {
+    border-left: 4px solid #28a745;
+}
+
+.notification-info {
+    border-left: 4px solid var(--azul-claro);
+}
+
+.notification-warning {
+    border-left: 4px solid #ffc107;
+}
+
+.notification-error {
+    border-left: 4px solid #e74c3c;
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification-success i {
+    color: #28a745;
+}
+
+.notification-info i {
+    color: var(--azul-claro);
+}
+
+.notification-warning i {
+    color: #ffc107;
+}
+
+.notification-error i {
+    color: #e74c3c;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--texto-claro);
+    cursor: pointer;
+    margin-left: auto;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.notification-close:hover {
+    background-color: var(--cinza-medio);
+    color: var(--texto-escuro);
+}
+
+/* Adicionar EndoInsight à navegação principal */
+@media (max-width: 768px) {
+    #navMenu {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}

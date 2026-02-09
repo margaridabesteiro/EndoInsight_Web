@@ -33,6 +33,7 @@ function initializeCommonFeatures() {
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
             
+            
             if (targetElement) {
                 e.preventDefault();
                 
