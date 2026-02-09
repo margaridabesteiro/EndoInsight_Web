@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulador físico de deteção de endometriose desenvolvido no ISEP para treino de exame pélvico bimanual">
+    <meta name="keywords" content="endometriose, simulador, ISEP, engenharia biomédica, exame pélvico, treino clínico">
+    <meta name="author" content="Ana Margarida Besteiro Ferreira, Sara Rangel Félix Oliveira">
+    <title>Simulador Físico de Deteção de Endometriose | ISEP</title>
+    
+    <!-- Preconnect para melhor performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Header com navegação -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <div>
+                            <span>EndoInsight</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#home" class="nav-link active" data-tab="home">Início</a></li>
+                        <li><a href="#project" class="nav-link" data-tab="project">O Projeto</a></li>
+                        <li><a href="#process" class="nav-link" data-tab="process">Funcionamento</a></li>
+                        <li><a href="equipa.html" class="nav-link">Equipa</a></li>
+                        <li><a href="#download" class="nav-link" data-tab="download">Software</a></li>
+                        <li><a href="#location" class="nav-link" data-tab="location">Localização</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        <!-- Seção Home/Hero -->
+        <section id="home" class="content-section active hero-section">
+            <div class="hero-banner">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Simulador Físico de Deteção de Endometriose</h1>
+                        <div class="hero-subtitle">Projeto 3C2 - Licenciatura em Engenharia Biomédica</div>
+                        <p class="hero-description">
+                            Um simulador inovador para treino de exame pélvico bimanual na deteção de endometriose superficial e profunda, 
+                            desenvolvido no Instituto Superior de Engenharia do Porto.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#download" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download do Software
+                            </a>
+                            <a href="#project" class="btn btn-secondary">
+                                <i class="fas fa-info-circle"></i> Saiba Mais
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="assets/images/simulador.jpg" alt="Simulador físico de endometriose">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas e números -->
+            <div class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Anos de Desenvolvimento</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24+</div>
+                            <div class="stat-label">Sensores de Pressão</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Precisão de Deteção</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1.0</div>
+                            <div class="stat-label">Versão do Software</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção O Projeto -->
+        <section id="project" class="content-section project-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">O Projeto</h2>
+                    <p class="section-subtitle">Simulador físico de exame pélvico para deteção de endometriose</p>
+                </div>
+
+                <div class="project-overview">
+                    <div class="project-description">
+                        <h3>Visão Geral</h3>
+                        <p>
+                            O projeto consiste no desenvolvimento de um simulador físico para treino do exame pélvico bimanual, 
+                            com foco na deteção de endometriose superficial e profunda. O sistema integra um modelo anatómico realista, 
+                            sensores de pressão e uma interface gráfica que fornece feedback em tempo real.
+                        </p>
+                    </div>
+
+                    <div class="project-video">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Demonstração do Simulador em Funcionamento</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objetivos do Projeto -->
+                <div class="objectives-section">
+                    <h3>Objetivos do Projeto</h3>
+                    <div class="objectives-grid">
+                        <div class="objective-card">
+                            <i class="fas fa-graduation-cap objective-icon"></i>
+                            <h4>Formação Médica</h4>
+                            <p>Proporcionar treino seguro e repetitivo para estudantes de medicina e residentes.</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-hand-paper objective-icon"></i>
+                            <h4>Feedback Tátil</h4>
+                            <p>Simular diferentes densidades de nódulos para treino de palpação diferenciada.</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-chart-line objective-icon"></i>
+                            <h4>Avaliação de Desempenho</h4>
+                            <p>Quantificar a precisão e técnica de palpação através de métricas objetivas.</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-heartbeat objective-icon"></i>
+                            <h4>Diagnóstico Precoce</h4>
+                            <p>Contribuir para o diagnóstico precoce da endometriose através de melhor formação.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Componentes do Sistema -->
+                <div class="components-section">
+                    <h3>Componentes do Sistema</h3>
+                    <div class="components-tabs">
+                        <button class="component-tab active" data-component="anatomical">Modelo Anatómico</button>
+                        <button class="component-tab" data-component="electronic">Sistema Eletrónico</button>
+                        <button class="component-tab" data-component="software">Software</button>
+                    </div>
+
+                    <div class="components-content">
+                        <div class="component-details active" id="anatomical">
+                            <div class="component-info">
+                                <h4>Modelo Anatómico Realista</h4>
+                                <ul>
+                                    <li><strong>Material:</strong> Silicone biomimético de grau médico</li>
+                                    <li><strong>Escala:</strong> 1:1 reprodução anatómica feminina</li>
+                                    <li><strong>Nódulos:</strong> Multipla densidade (7-30 Shore A)</li>
+                                    <li><strong>Áreas:</strong> Útero, ovários, ligamentos uterossacrais</li>
+                                    <li><strong>Substituição:</strong> Nódulos intercambiáveis</li>
+                                </ul>
+                            </div>
+                            <div class="component-image">
+                                <img src="assets/images/modelo-anatomico.jpg" alt="Modelo anatómico do simulador">
+                            </div>
+                        </div>
+
+                        <div class="component-details" id="electronic">
+                            <div class="component-info">
+                                <h4>Sistema Eletrónico</h4>
+                                <ul>
+                                    <li><strong>Sensores:</strong> 24 FSR (Force Sensitive Resistors)</li>
+                                    <li><strong>Microcontrolador:</strong> ESP32 com Wi-Fi/Bluetooth</li>
+                                    <li><strong>Aquisição:</strong> Taxa de amostragem de 100Hz</li>
+                                    <li><strong>Comunicação:</strong> USB Serial + BLE</li>
+                                    <li><strong>Alimentação:</strong> USB 5V / Bateria Li-Po</li>
+                                </ul>
+                            </div>
+                            <div class="component-image">
+                                <img src="assets/images/pcb.jpg" alt="PCB do sistema eletrónico">
+                            </div>
+                        </div>
+
+                        <div class="component-details" id="software">
+                            <div class="component-info">
+                                <h4>Software de Interface</h4>
+                                <ul>
+                                    <li><strong>Linguagem:</strong> Python 3.8+</li>
+                                    <li><strong>GUI:</strong> PyQt5 para interface moderna</li>
+                                    <li><strong>Visualização:</strong> OpenCV para processamento de imagem</li>
+                                    <li><strong>Relatórios:</strong> Geração automática em PDF</li>
+                                    <li><strong>Base de dados:</strong> SQLite para armazenamento de sessões</li>
+                                </ul>
+                            </div>
+                            <div class="component-image">
+                                <img src="assets/images/software-interface.jpg" alt="Interface do software">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Funcionamento -->
+        <section id="process" class="content-section process-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Como Funciona</h2>
+                    <p class="section-subtitle">Processo completo do simulador de palpação pélvica</p>
+                </div>
+
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Preparação do Sistema</h3>
+                            <p>Ligar o simulador via USB, iniciar o software de interface e calibrar os sensores conforme as instruções do manual.</p>
+                            <div class="step-tips">
+                                <strong>Dica:</strong> Realizar calibração inicial para melhor precisão.
+                            </div>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Palpação Bimanual</h3>
+                            <p>O utilizador realiza o exame pélvico bimanual no modelo anatómico, focando nas áreas críticas para deteção de endometriose.</p>
+                            <div class="step-tips">
+                                <strong>Técnica:</strong> Utilizar pressão graduada para detetar nódulos de diferentes densidades.
+                            </div>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Deteção em Tempo Real</h3>
+                            <p>Sensores FSR detetam pressão e duração do contacto. Dados são processados pelo microcontrolador e enviados via USB.</p>
+                            <div class="step-tips">
+                                <strong>Feedback:</strong> LEDs no modelo indicam áreas palpadas.
+                            </div>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Visualização Gráfica</h3>
+                            <p>O software mapeia os sensores ativados numa imagem anatómica 3D, mostrando intensidade e duração da palpação.</p>
+                            <div class="step-tips">
+                                <strong>Visual:</strong> Cores indicam intensidade (verde: leve, vermelho: forte).
+                            </div>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Avaliação de Desempenho</h3>
+                            <p>O sistema gera relatório com métricas: tempo total, áreas cobertas, pressão média e precisão de deteção.</p>
+                            <div class="step-tips">
+                                <strong>Melhoria:</strong> Comparar resultados entre sessões de treino.
+                            </div>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagrama de Fluxo -->
+                <div class="flow-diagram">
+                    <h3>Fluxo de Dados do Sistema</h3>
+                    <div class="diagram-container">
+                        <div class="diagram-step">
+                            <div class="diagram-icon"><i class="fas fa-hand-paper"></i></div>
+                            <div class="diagram-label">Palpação</div>
+                        </div>
+                        <div class="diagram-arrow">→</div>
+                        <div class="diagram-step">
+                            <div class="diagram-icon"><i class="fas fa-sensor"></i></div>
+                            <div class="diagram-label">Sensores FSR</div>
+                        </div>
+                        <div class="diagram-arrow">→</div>
+                        <div class="diagram-step">
+                            <div class="diagram-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="diagram-label">ESP32</div>
+                        </div>
+                        <div class="diagram-arrow">→</div>
+                        <div class="diagram-step">
+                            <div class="diagram-icon"><i class="fas fa-laptop"></i></div>
+                            <div class="diagram-label">Software Python</div>
+                        </div>
+                        <div class="diagram-arrow">→</div>
+                        <div class="diagram-step">
+                            <div class="diagram-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="diagram-label">Feedback</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Download -->
+        <section id="download" class="content-section download-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Software e Documentação</h2>
+                    <p class="section-subtitle">Recursos disponíveis para download</p>
+                </div>
+
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="download-card-header">
+                            <i class="fas fa-code download-card-icon"></i>
+                            <h3>Código Fonte</h3>
+                        </div>
+                        <div class="download-card-body">
+                            <p>Código completo da aplicação Python para interface com o simulador.</p>
+                            <ul class="download-features">
+                                <li><i class="fas fa-check"></i> Interface PyQt5</li>
+                                <li><i class="fas fa-check"></i> Comunicação serial</li>
+                                <li><i class="fas fa-check"></i> Processamento de dados</li>
+                                <li><i class="fas fa-check"></i> Base de dados SQLite</li>
+                            </ul>
+                        </div>
+                        <div class="download-card-footer">
+                            <a href="#" class="btn btn-secondary download-btn">
+                                <i class="fas fa-download"></i> Download (25 MB)
+                            </a>
+                            <span class="file-version">v1.0.0</span>
+                        </div>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-card-header">
+                            <i class="fas fa-book download-card-icon"></i>
+                            <h3>Documentação Técnica</h3>
+                        </div>
+                        <div class="download-card-body">
+                            <p>Manual completo com especificações técnicas e guia de montagem.</p>
+                            <ul class="download-features">
+                                <li><i class="fas fa-check"></i> Manual de utilização</li>
+                                <li><i class="fas fa-check"></i> Esquemas eletrónicos</li>
+                                <li><i class="fas fa-check"></i> Guia de montagem</li>
+                                <li><i class="fas fa-check"></i> Protocolo de comunicação</li>
+                            </ul>
+                        </div>
+                        <div class="download-card-footer">
+                            <a href="#" class="btn btn-secondary download-btn">
+                                <i class="fas fa-download"></i> Download (15 MB)
+                            </a>
+                            <span class="file-version">v1.2</span>
+                        </div>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-card-header">
+                            <i class="fas fa-file-pdf download-card-icon"></i>
+                            <h3>Relatório do Projeto</h3>
+                        </div>
+                        <div class="download-card-body">
+                            <p>Relatório completo do projeto 3C2 com todos os detalhes de desenvolvimento.</p>
+                            <ul class="download-features">
+                                <li><i class="fas fa-check"></i> Revisão bibliográfica</li>
+                                <li><i class="fas fa-check"></i> Metodologia</li>
+                                <li><i class="fas fa-check"></i> Resultados</li>
+                                <li><i class="fas fa-check"></i> Conclusões</li>
+                            </ul>
+                        </div>
+                        <div class="download-card-footer">
+                            <a href="#" class="btn btn-secondary download-btn">
+                                <i class="fas fa-download"></i> Download (8 MB)
+                            </a>
+                            <span class="file-version">Final</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instalação e Requisitos -->
+                <div class="requirements-section">
+                    <h3>Requisitos do Sistema</h3>
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <h4><i class="fas fa-laptop"></i> Hardware</h4>
+                            <ul>
+                                <li>Processador: Intel i5 ou equivalente</li>
+                                <li>Memória RAM: 8GB mínimo</li>
+                                <li>Armazenamento: 500MB livres</li>
+                                <li>Porta USB 2.0/3.0</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-card">
+                            <h4><i class="fab fa-python"></i> Software</h4>
+                            <ul>
+                                <li>Python 3.8 ou superior</li>
+                                <li>Bibliotecas: PySerial, PyQt5, NumPy</li>
+                                <li>Sistema: Windows 10/11, macOS 10.15+</li>
+                                <li>Drivers USB instalados</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-card">
+                            <h4><i class="fas fa-tools"></i> Instalação</h4>
+                            <ol class="installation-steps">
+                                <li>Extrair arquivo ZIP baixado</li>
+                                <li>Instalar Python 3.8+</li>
+                                <li>Executar <code>pip install -r requirements.txt</code></li>
+                                <li>Conectar simulador via USB</li>
+                                <li>Executar <code>python main.py</code></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Localização -->
+        <section id="location" class="content-section location-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Localização</h2>
+                    <p class="section-subtitle">Instituto Superior de Engenharia do Porto (ISEP)</p>
+                </div>
+
+                <div class="location-content">
+                    <div class="location-info">
+                        <div class="location-card">
+                            <div class="location-card-header">
+                                <i class="fas fa-university"></i>
+                                <h3>ISEP - Instituto Superior de Engenharia do Porto</h3>
+                            </div>
+                            <div class="location-card-body">
+                                <p>
+                                    O projeto foi desenvolvido no âmbito da Licenciatura em Engenharia Biomédica do Instituto Superior 
+                                    de Engenharia do Porto, uma das instituições de ensino superior mais prestigiadas de Portugal na área da engenharia.
+                                </p>
+                                
+                                <div class="contact-info">
+                                    <div class="contact-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <div>
+                                            <h4>Endereço</h4>
+                                            <p>Rua Dr. António Bernardino de Almeida, 431<br>4200-072 Porto, Portugal</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone"></i>
+                                        <div>
+                                            <h4>Telefone</h4>
+                                            <p>+351 228 340 500</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <div>
+                                            <h4>Email</h4>
+                                            <p>geral@isep.ipp.pt</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <i class="fas fa-globe"></i>
+                                        <div>
+                                            <h4>Website</h4>
+                                            <p><a href="https://www.isep.ipp.pt" target="_blank">www.isep.ipp.pt</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horário de Funcionamento -->
+                        <div class="hours-card">
+                            <h4><i class="fas fa-clock"></i> Horário de Funcionamento</h4>
+                            <table class="hours-table">
+                                <tr>
+                                    <td>Segunda - Sexta</td>
+                                    <td>09:00 - 18:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Sábado</td>
+                                    <td>09:00 - 13:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Domingo</td>
+                                    <td>Fechado</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="location-map">
+                        <div class="map-container">
+                            <div id="map"></div>
+                        </div>
+                        <div class="map-actions">
+                            <a href="https://www.google.com/maps?q=ISEP+Porto" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-external-link-alt"></i> Abrir no Google Maps
+                            </a>
+                            <a href="https://maps.apple.com/?q=ISEP+Porto" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-apple"></i> Apple Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Simulador de Endometriose</h3>
+                    <p>Projeto 3C2 da Licenciatura em Engenharia Biomédica do Instituto Superior de Engenharia do Porto.</p>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://researchgate.net" target="_blank" aria-label="ResearchGate">
+                            <i class="fab fa-researchgate"></i>
+                        </a>
+                        <a href="https://scholar.google.com" target="_blank" aria-label="Google Scholar">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#project">O Projeto</a></li>
+                        <li><a href="#process">Funcionamento</a></li>
+                        <li><a href="equipa.html">Equipa</a></li>
+                        <li><a href="#download">Software</a></li>
+                        <li><a href="#location">Localização</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#download">Software</a></li>
+                        <li><a href="#download">Documentação</a></li>
+                        <li><a href="#download">Relatório</a></li>
+                        <li><a href="#project">Especificações</a></li>
+                        <li><a href="#process">Diagramas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contactos</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:projeto.endometriose@isep.ipp.pt">
+                            <i class="fas fa-envelope"></i> projeto.endometriose@isep.ipp.pt
+                        </a></li>
+                        <li><a href="https://www.isep.ipp.pt" target="_blank">
+                            <i class="fas fa-globe"></i> www.isep.ipp.pt
+                        </a></li>
+                        <li><a href="#location">
+                            <i class="fas fa-map-marker-alt"></i> ISEP - Porto
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Simulador Físico de Deteção de Endometriose - Projeto 3C2. Licenciatura em Engenharia Biomédica, ISEP.</p>
+                <p>Ana Margarida Besteiro Ferreira (1221419) | Sara Rangel Félix Oliveira (12211424)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/tab-navigation.js"></script>
+    <script src="assets/js/mapa.js"></script>
+</body>
+</html>

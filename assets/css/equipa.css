@@ -1,0 +1,486 @@
+/* equipa.css */
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--cinza-medio);
+    padding: 15px 0;
+    margin-bottom: 40px;
+}
+
+.breadcrumb .container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumb a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: var(--rosa-escuro);
+}
+
+.breadcrumb span {
+    color: var(--texto-escuro);
+}
+
+.breadcrumb span.current {
+    color: var(--rosa-escuro);
+    font-weight: 500;
+}
+
+/* Cabeçalho da Equipa */
+.equipa-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.equipa-header h1 {
+    color: var(--rosa-escuro);
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.equipa-subtitle {
+    font-size: 1.2rem;
+    color: var(--texto-claro);
+    margin-bottom: 20px;
+}
+
+.equipa-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Membros da Equipa */
+.equipa-membros {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.membro-card {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.membro-imagem {
+    position: relative;
+    overflow: hidden;
+}
+
+.membro-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.membro-card:hover .membro-imagem img {
+    transform: scale(1.05);
+}
+
+.membro-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--rosa-escuro);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.membro-info {
+    padding: 40px 40px 40px 0;
+}
+
+.membro-info h2 {
+    color: var(--rosa-escuro);
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.membro-numero {
+    color: var(--texto-claro);
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+.membro-bio {
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.membro-competencias {
+    margin-bottom: 30px;
+}
+
+.membro-competencias h3 {
+    color: var(--texto-escuro);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.competencias-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.competencia-tag {
+    background-color: var(--rosa-claro);
+    color: var(--rosa-escuro);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.membro-tarefas {
+    margin-bottom: 30px;
+}
+
+.membro-tarefas h3 {
+    color: var(--texto-escuro);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.membro-tarefas ul {
+    list-style: none;
+}
+
+.membro-tarefas li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cinza-medio);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.membro-tarefas li:last-child {
+    border-bottom: none;
+}
+
+.membro-tarefas i {
+    color: var(--rosa-escuro);
+    width: 20px;
+}
+
+.membro-contactos h3 {
+    color: var(--texto-escuro);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.contactos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto-escuro);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contacto-item:hover {
+    color: var(--rosa-escuro);
+}
+
+.contacto-item i {
+    width: 20px;
+    color: var(--rosa-escuro);
+}
+
+/* Trabalho Conjunto */
+.trabalho-conjunto {
+    background: linear-gradient(135deg, var(--azul-claro) 0%, var(--rosa-claro) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.trabalho-conjunto h2 {
+    color: var(--rosa-escuro);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+.conjunto-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.conjunto-info p {
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.conjunto-tarefas h3 {
+    color: var(--texto-escuro);
+    margin-bottom: 20px;
+}
+
+.tarefas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.tarefa-item {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.tarefa-item:hover {
+    transform: translateY(-5px);
+}
+
+.tarefa-item i {
+    font-size: 2rem;
+    color: var(--rosa-escuro);
+    margin-bottom: 10px;
+}
+
+.tarefa-item h4 {
+    color: var(--rosa-escuro);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.tarefa-item p {
+    font-size: 0.9rem;
+    color: var(--texto-claro);
+    line-height: 1.5;
+}
+
+.conjunto-galeria h3 {
+    color: var(--texto-escuro);
+    margin-bottom: 20px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.galeria-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s;
+}
+
+.galeria-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Cronologia */
+.cronologia-section {
+    margin-bottom: 80px;
+}
+
+.cronologia-section h2 {
+    color: var(--rosa-escuro);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: var(--rosa-medio);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    width: 45%;
+    padding: 10px 20px;
+    background-color: var(--rosa-claro);
+    color: var(--rosa-escuro);
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+}
+
+.timeline-content h3 {
+    color: var(--rosa-escuro);
+    margin-bottom: 10px;
+}
+
+/* Reconhecimentos */
+.reconhecimentos-section {
+    margin-bottom: 60px;
+}
+
+.reconhecimentos-section h2 {
+    color: var(--rosa-escuro);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+.reconhecimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.reconhecimento-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s;
+}
+
+.reconhecimento-card:hover {
+    transform: translateY(-5px);
+}
+
+.reconhecimento-card i {
+    font-size: 2.5rem;
+    color: var(--rosa-escuro);
+    margin-bottom: 20px;
+}
+
+.reconhecimento-card h3 {
+    color: var(--rosa-escuro);
+    margin-bottom: 15px;
+}
+
+.reconhecimento-card p {
+    color: var(--texto-claro);
+    line-height: 1.6;
+}
+
+/* Responsividade para a página da equipa */
+@media (max-width: 1024px) {
+    .membro-card {
+        grid-template-columns: 300px 1fr;
+        gap: 30px;
+    }
+    
+    .conjunto-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .tarefas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .membro-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .membro-info {
+        padding: 30px;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        margin-left: 60px;
+    }
+    
+    .timeline-date {
+        width: auto;
+        position: absolute;
+        left: -70px;
+        top: 0;
+    }
+    
+    .timeline-content {
+        width: 100%;
+    }
+    
+    .reconhecimentos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .membro-info {
+        padding: 20px;
+    }
+    
+    .membro-info h2 {
+        font-size: 1.6rem;
+    }
+    
+    .trabalho-conjunto {
+        padding: 20px;
+    }
+    
+    .galeria-grid {
+        grid-template-columns: 1fr;
+    }
+}
