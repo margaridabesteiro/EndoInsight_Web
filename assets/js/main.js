@@ -1,52 +1,14 @@
-// assets/js/main.js
+// assets/js/main.js - Versão simplificada para scroll único
+
+// assets/js/main.js - Versão corrigida para scroll único
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Verificar se estamos na página da equipa
-    const isEquipaPage = window.location.pathname.includes('equipa.html');
-    
-    // Inicializar funcionalidades comuns
     initializeCommonFeatures();
-    
-    // Inicializar funcionalidades específicas da página
-    if (isEquipaPage) {
-        initializeEquipaPage();
-    } else {
-        initializeMainPage();
-    }
+    initializeSinglePageFeatures();
 });
 
 function initializeCommonFeatures() {
-    // Smooth scroll para âncoras
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Ignorar se for apenas #
-            if (href === '#') return;
-            
-            // Se for um link para outra página com âncora
-            if (href.includes('.html#')) {
-                // Permitir navegação normal
-                return;
-            }
-            
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            
-            if (targetElement) {
-                e.preventDefault();
-                
-                // Scroll suave
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Adicionar estilos para notificações
+    // Adicionar estilos para notificações (mantido do original)
     const notificationStyles = `
         .notification {
             position: fixed;
@@ -104,286 +66,316 @@ function initializeCommonFeatures() {
             background-color: var(--cinza-medio);
             color: var(--texto-escuro);
         }
-        
-        .custom-marker {
-            font-size: 1.5rem;
-            color: var(--rosa-escuro);
-            text-align: center;
-        }
-        
-        .map-popup h3 {
-            color: var(--rosa-escuro);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        
-        .map-popup p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-        }
-        
-        .map-popup a {
-            color: var(--rosa-escuro);
-            text-decoration: none;
-        }
-        
-        .map-popup a:hover {
-            text-decoration: underline;
-        }
     `;
     
     const styleSheet = document.createElement('style');
     styleSheet.textContent = notificationStyles;
     document.head.appendChild(styleSheet);
+    
+    // Contador animado para estatísticas (mantido do original)
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    if (statNumbers.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target;
+                    const target = parseInt(statNumber.textContent.replace('+', ''));
+                    
+                    animateCounter(statNumber, target);
+                    observer.unobserve(statNumber);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(stat => observer.observe(stat));
+    }
+    
+    // Sistema de tabs para componentes (mantido do original)
+    const componentTabs = document.querySelectorAll('.component-tab');
+    if (componentTabs.length > 0) {
+        componentTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const componentId = this.getAttribute('data-component');
+                
+                componentTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.component-details').forEach(detail => {
+                    detail.classList.remove('active');
+                });
+                
+                const targetDetails = document.getElementById(componentId);
+                if (targetDetails) {
+                    targetDetails.classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // Download buttons com simulação (mantido do original)
+    const downloadButtons = document.querySelectorAll('.download-btn');
+    if (downloadButtons.length > 0) {
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> A preparar download...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    showNotification('Download iniciado! Verifique a sua pasta de downloads.', 'success');
+                }, 1500);
+            });
+        });
+    }
+    
+    // Inicializar mapa da localização ISEP (mantido do original)
+    if (document.getElementById('map')) {
+        initializeISEPMap();
+    }
 }
 
-function initializeMainPage() {
-    // Contador animado para estatísticas
-    const statNumbers = document.querySelectorAll('.stat-number');
+function initializeSinglePageFeatures() {
+    // Configurar navegação suave e highlight ativo
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Configurar smooth scroll para links de navegação
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Se for um link interno (começa com #)
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Scroll suave para a seção
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fechar menu móvel se estiver aberto
+                    const navMenu = document.getElementById('navMenu');
+                    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                    
+                    if (navMenu && navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        if (mobileMenuBtn) {
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+            }
+            // Se for um link externo (como equipa.html), deixar navegar normalmente
+        });
+    });
+    
+    // Observador de interseção para highlight de seção ativa
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0.1
+    };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const statNumber = entry.target;
-                const target = parseInt(statNumber.textContent.replace('+', ''));
+                const sectionId = entry.target.id;
                 
-                // Animar contador
-                animateCounter(statNumber, target);
+                // Remover active apenas dos links internos
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href').startsWith('#')) {
+                        link.classList.remove('active');
+                    }
+                });
                 
-                // Deixar de observar após animação
-                observer.unobserve(statNumber);
+                // Adicionar active ao link correspondente (apenas links internos)
+                const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                }
             }
         });
-    }, { threshold: 0.5 });
+    }, observerOptions);
     
-    statNumbers.forEach(stat => observer.observe(stat));
+    sections.forEach(section => {
+        observer.observe(section);
+    });
     
-    // Função para animar contador
-    function animateCounter(element, target) {
-        const hasPlus = element.textContent.includes('+');
-        const duration = 2000; // 2 segundos
-        const step = target / (duration / 16); // 60fps
-        let current = 0;
+    // Configurar menu móvel (mantido do original)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('show');
+        });
         
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn')) {
+                navMenu.classList.remove('show');
+                if (mobileMenuBtn) {
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
             }
-            
-            if (hasPlus && current === target) {
-                element.textContent = target.toFixed(0) + '+';
-            } else {
-                element.textContent = Math.floor(current);
-            }
-        }, 16);
+        });
+        
+        // Fechar menu ao clicar em um link (qualquer link)
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Pequeno delay para garantir que a navegação aconteça primeiro
+                setTimeout(() => {
+                    navMenu.classList.remove('show');
+                    if (mobileMenuBtn) {
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }, 100);
+            });
+        });
     }
     
-    // Vídeo placeholder click
-    const videoPlaceholder = document.querySelector('.video-placeholder');
-    if (videoPlaceholder) {
-        videoPlaceholder.addEventListener('click', function() {
-            this.innerHTML = `
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                    title="Demonstração do Simulador" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            `;
-        });
+    // Verificar URL atual para destacar link correto no carregamento
+    highlightCurrentLink();
+}
+
+function highlightCurrentLink() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash;
+    
+    // Remover active de todos os links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Se estamos na página principal e tem hash
+    if (currentPath.includes('index.html') || currentPath === '/' || currentPath.includes('.html') === false) {
+        if (currentHash) {
+            // Destacar link correspondente ao hash
+            const link = document.querySelector(`.nav-link[href="${currentHash}"]`);
+            if (link) {
+                link.classList.add('active');
+            }
+        } else {
+            // Se não tem hash, destacar primeiro link ou deixar sem destaque
+            const firstLink = document.querySelector('.nav-link[href^="#"]');
+            if (firstLink) {
+                firstLink.classList.add('active');
+            }
+        }
+    } else if (currentPath.includes('equipa.html')) {
+        // Se estamos na página da equipa, destacar o link da equipa
+        const equipaLink = document.querySelector('.nav-link[href*="equipa.html"]');
+        if (equipaLink) {
+            equipaLink.classList.add('active');
+        }
     }
 }
 
-function initializeEquipaPage() {
-    // Galeria lightbox
-    const galleryImages = document.querySelectorAll('.galeria-grid img');
-    galleryImages.forEach(img => {
-        img.addEventListener('click', function() {
-            openLightbox(this.src, this.alt);
-        });
+// Função para animar contador (mantida do original)
+function animateCounter(element, target) {
+    const hasPlus = element.textContent.includes('+');
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        
+        if (hasPlus && current === target) {
+            element.textContent = target.toFixed(0) + '+';
+        } else {
+            element.textContent = Math.floor(current);
+        }
+    }, 16);
+}
+
+// Função para inicializar mapa ISEP (mantida do original)
+function initializeISEPMap() {
+    const isepCoords = [41.1780, -8.6081];
+    
+    const map = L.map('map').setView(isepCoords, 16);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+    }).addTo(map);
+    
+    const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: '<i class="fas fa-university"></i>',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -40]
     });
     
-    // Função para abrir lightbox
-    function openLightbox(src, alt) {
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <div class="lightbox-content">
-                <img src="${src}" alt="${alt}">
-                <div class="lightbox-caption">${alt}</div>
-                <button class="lightbox-close"><i class="fas fa-times"></i></button>
-                <button class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    L.marker(isepCoords, { icon: customIcon }).addTo(map)
+        .bindPopup(`
+            <div class="map-popup">
+                <h3>ISEP - Instituto Superior de Engenharia do Porto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Dr. António Bernardino de Almeida, 431</p>
+                <p><i class="fas fa-phone"></i> +351 228 340 500</p>
+                <p><i class="fas fa-globe"></i> <a href="https://www.isep.ipp.pt" target="_blank">www.isep.ipp.pt</a></p>
             </div>
-        `;
-        
-        document.body.appendChild(lightbox);
-        document.body.style.overflow = 'hidden';
-        
-        // Fechar lightbox
-        const closeBtn = lightbox.querySelector('.lightbox-close');
-        closeBtn.addEventListener('click', () => closeLightbox(lightbox));
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox(lightbox);
-            }
-        });
-        
-        // Navegação entre imagens (simplificada)
-        const images = Array.from(galleryImages);
-        const currentIndex = images.findIndex(img => img.src === src);
-        
-        const prevBtn = lightbox.querySelector('.lightbox-prev');
-        const nextBtn = lightbox.querySelector('.lightbox-next');
-        
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                const prevIndex = (currentIndex - 1 + images.length) % images.length;
-                closeLightbox(lightbox);
-                setTimeout(() => {
-                    openLightbox(images[prevIndex].src, images[prevIndex].alt);
-                }, 300);
-            });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                const nextIndex = (currentIndex + 1) % images.length;
-                closeLightbox(lightbox);
-                setTimeout(() => {
-                    openLightbox(images[nextIndex].src, images[nextIndex].alt);
-                }, 300);
-            });
-        }
-        
-        // Fechar com ESC
-        document.addEventListener('keydown', function handleKeydown(e) {
-            if (e.key === 'Escape') {
-                closeLightbox(lightbox);
-                document.removeEventListener('keydown', handleKeydown);
-            }
-        });
+        `)
+        .openPopup();
+    
+    L.control.scale().addTo(map);
+}
+
+// Função para mostrar notificações (mantida do original)
+function showNotification(message, type = 'info') {
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
     }
     
-    function closeLightbox(lightbox) {
-        lightbox.style.opacity = '0';
-        setTimeout(() => {
-            if (lightbox.parentNode) {
-                lightbox.parentNode.removeChild(lightbox);
-            }
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-    
-    // Adicionar estilos para lightbox
-    const lightboxStyles = `
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.3s;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 8px;
-        }
-        
-        .lightbox-caption {
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background 0.3s;
-        }
-        
-        .lightbox-close:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background 0.3s;
-        }
-        
-        .lightbox-nav:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        .lightbox-prev {
-            left: 20px;
-        }
-        
-        .lightbox-next {
-            right: 20px;
-        }
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+        <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
     
-    const existingLightboxStyle = document.querySelector('#lightbox-styles');
-    if (!existingLightboxStyle) {
-        const styleSheet = document.createElement('style');
-        styleSheet.id = 'lightbox-styles';
-        styleSheet.textContent = lightboxStyles;
-        document.head.appendChild(styleSheet);
-    }
+    document.body.appendChild(notification);
     
-    // Animar elementos da cronologia quando visíveis
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
     
-    const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.3 });
-    
-    timelineItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-        timelineObserver.observe(item);
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     });
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }
+    }, 5000);
 }

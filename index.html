@@ -33,11 +33,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="index.html">
-                        <div>
-                            <span>EndoInsight</span>
-                        </div>
-                    </a>
+                    
                 </div>
 
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
@@ -46,10 +42,12 @@
 
                 <nav>
                     <ul id="navMenu">
-                        <li><a href="#project" class="nav-link" data-tab="project">O Produto EndoInsight</a></li>
-                        <li><a href="#process" class="nav-link" data-tab="process">Funcionamento</a></li>
-                        <li><a href="equipa.html" class="nav-link">Equipa</a></li>
-                        <li><a href="#location" class="nav-link" data-tab="location">Localização</a></li>
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#project" class="nav-link">EndoInsight</a></li>
+                        <li><a href="#process" class="nav-link">Funcionamento</a></li>
+                        <li><a href="#download" class="nav-link">Software</a></li>
+                        <li><a href="#location" class="nav-link">Localização</a></li>
+                        <li><a href="equipa.html" class="nav-link">A Nossa Equipa</a></li>
                     </ul>
                 </nav>
             </div>
@@ -59,7 +57,7 @@
     <!-- Conteúdo Principal -->
     <main id="main-content">
         <!-- Seção Home/Hero -->
-        <section id="home" class="content-section active hero-section">
+        <section id="home" class="content-section hero-section">
             <div class="hero-banner">
                 <div class="container">
                     <div class="hero-content">
@@ -554,42 +552,30 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer Compacto -->
+    <footer class="footer-compact">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Todos os Direitos Reservados</h3>
-                    <p>&copy; 2025 Simulador Físico de Deteção de Endometriose - Projeto 3C2. Licenciatura em Engenharia
-                        Biomédica, ISEP.</p>
-                    <p>Ana Margarida Besteiro Ferreira (1221419) | Sara Rangel Félix Oliveira (12211424)</p>
-                </div>
-            <div class="footer-column">
-                    <h3>Contactos</h3>
-                    <ul class="footer-links">
-                        <li><a href="1221419@isep.ipp.pt">
-                                <i class="fas fa-envelope"></i> 1221419@isep.ipp.pt
-                            </a></li>
-                        <li><a href="1221424@isep.ipp.pt">
-                                <i class="fas fa-envelope"></i> 1221424@isep.ipp.pt
-                            </a></li>
-                        <li><a href="https://www.isep.ipp.pt" target="_blank">
-                                <i class="fas fa-globe"></i> www.isep.ipp.pt
-                            </a></li>
-                        <li><a href="#location">
-                                <i class="fas fa-map-marker-alt"></i> ISEP - Porto
-                            </a></li>
-                    </ul>
-                </div>
+            <div class="footer-brand">
+                <p>&copy; 2025 Simulador Físico de Deteção de Endometriose - Todos os direitos reservados.</p>
                 
+                <div class="footer-contacts">
+                    <a href="mailto:1221419@isep.ipp.pt" class="footer-contact-item">
+                        <i class="fas fa-envelope"></i> 1221419@isep.ipp.pt
+                    </a>
+                    <a href="mailto:12211424@isep.ipp.pt" class="footer-contact-item">
+                        <i class="fas fa-envelope"></i> 12211424@isep.ipp.pt
+                    </a>
+                    <a href="https://www.isep.ipp.pt" target="_blank" class="footer-contact-item">
+                        <i class="fas fa-globe"></i> www.isep.ipp.pt
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/tab-navigation.js"></script>
-    <script src="assets/js/mapa.js"></script>
 </body>
 
 </html>
