@@ -19,7 +19,6 @@
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
     <!-- CSS Principal -->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -33,7 +32,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    
+
                 </div>
 
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
@@ -109,7 +108,8 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">EndoInsight</h2>
-                    <p class="section-subtitle">Simulador Físico e de Imagiologia para Auxílio de Deteção de Endometriose</p>
+                    <p class="section-subtitle">Simulador Físico e de Imagiologia para Auxílio de Deteção de
+                        Endometriose</p>
                 </div>
 
                 <div class="project-overview">
@@ -317,13 +317,13 @@
                         </div>
                         <div class="diagram-arrow">→</div>
                         <div class="diagram-step">
-                            <div class="diagram-icon"><i class="fas fa-sensor"></i></div>
+                            <div class="diagram-icon"><i class="fas fa-puzzle-piece"></i></div>
                             <div class="diagram-label">Sensores FSR</div>
                         </div>
                         <div class="diagram-arrow">→</div>
                         <div class="diagram-step">
                             <div class="diagram-icon"><i class="fas fa-microchip"></i></div>
-                            <div class="diagram-label">ESP32</div>
+                            <div class="diagram-label">Arduino</div>
                         </div>
                         <div class="diagram-arrow">→</div>
                         <div class="diagram-step">
@@ -552,12 +552,17 @@
         </section>
     </main>
 
-    <!-- Footer Compacto -->
     <footer class="footer-compact">
         <div class="container">
             <div class="footer-brand">
-                <p>&copy; 2025 EndoInsighr - Todos os direitos reservados.</p>
-                
+                <p>© 2025 EndoInsight. Todos os direitos reservados.</p>
+
+                <div class="footer-links">
+                    <a href="#" id="openEtica">Ética e Segurança</a>
+                    |
+                    <a href="#" id="openTermos">Termos e Condições</a>
+                </div>
+
                 <div class="footer-contacts">
                     <a href="mailto:1221419@isep.ipp.pt" class="footer-contact-item">
                         <i class="fas fa-envelope"></i> 1221419@isep.ipp.pt
@@ -573,9 +578,45 @@
         </div>
     </footer>
 
+    <div class="custom-modal" id="modalEtica">
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" data-close>×</button>
+            <h3>Ética e Segurança</h3>
+            <p>O EndoInsight é um projeto desenvolvido exclusivamente para fins académicos, educativos e de
+                investigação.</p>
+            <p>O sistema apoia o treino técnico do exame pélvico bimanual. Não possui finalidade clínica. Não substitui
+                exames médicos, diagnósticos ou decisões terapêuticas.</p>
+            <p>Todos os dados utilizados são simulados. Não são recolhidos, armazenados ou processados dados reais de
+                pacientes.</p>
+            <p>O hardware foi projetado para utilização segura em ambiente académico. Os sensores operam dentro de
+                limites controlados e não envolvem componentes invasivos.</p>
+            <p>A interface fornece apenas feedback informativo. Os resultados não devem ser interpretados como
+                indicadores clínicos.</p>
+            <p>Evoluções futuras devem respeitar princípios éticos, normas de segurança e regulamentação aplicável a
+                sistemas de apoio à saúde.</p>
+        </div>
+    </div>
+
+    <div class="custom-modal" id="modalTermos">
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" data-close>×</button>
+            <h3>Termos e Condições</h3>
+            <p>A utilização do website EndoInsight implica a aceitação dos presentes termos e condições.</p>
+            <p>Todo o conteúdo disponibilizado destina-se exclusivamente a fins académicos e educativos.</p>
+            <p>O software é fornecido para demonstração e treino. A sua utilização é da responsabilidade do utilizador.
+            </p>
+            <p>É proibida a utilização do sistema em contexto clínico real ou apoio direto a pacientes.</p>
+            <p>Os direitos de autor pertencem aos autores do projeto. Não é permitida utilização comercial sem
+                autorização.</p>
+            <p>Os autores reservam-se o direito de atualizar ou remover conteúdos sem aviso prévio.</p>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

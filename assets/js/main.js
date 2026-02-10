@@ -2,7 +2,7 @@
 
 // assets/js/main.js - Versão corrigida para scroll único
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeCommonFeatures();
     initializeSinglePageFeatures();
 });
@@ -67,44 +67,44 @@ function initializeCommonFeatures() {
             color: var(--texto-escuro);
         }
     `;
-    
+
     const styleSheet = document.createElement('style');
     styleSheet.textContent = notificationStyles;
     document.head.appendChild(styleSheet);
-    
+
     // Contador animado para estatísticas (mantido do original)
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     if (statNumbers.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const statNumber = entry.target;
                     const target = parseInt(statNumber.textContent.replace('+', ''));
-                    
+
                     animateCounter(statNumber, target);
                     observer.unobserve(statNumber);
                 }
             });
         }, { threshold: 0.5 });
-        
+
         statNumbers.forEach(stat => observer.observe(stat));
     }
-    
+
     // Sistema de tabs para componentes (mantido do original)
     const componentTabs = document.querySelectorAll('.component-tab');
     if (componentTabs.length > 0) {
         componentTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
+            tab.addEventListener('click', function () {
                 const componentId = this.getAttribute('data-component');
-                
+
                 componentTabs.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 document.querySelectorAll('.component-details').forEach(detail => {
                     detail.classList.remove('active');
                 });
-                
+
                 const targetDetails = document.getElementById(componentId);
                 if (targetDetails) {
                     targetDetails.classList.add('active');
@@ -112,18 +112,18 @@ function initializeCommonFeatures() {
             });
         });
     }
-    
+
     // Download buttons com simulação (mantido do original)
     const downloadButtons = document.querySelectorAll('.download-btn');
     if (downloadButtons.length > 0) {
         downloadButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> A preparar download...';
                 this.disabled = true;
-                
+
                 setTimeout(() => {
                     this.innerHTML = originalText;
                     this.disabled = false;
@@ -132,7 +132,7 @@ function initializeCommonFeatures() {
             });
         });
     }
-    
+
     // Inicializar mapa da localização ISEP (mantido do original)
     if (document.getElementById('map')) {
         initializeISEPMap();
@@ -143,30 +143,30 @@ function initializeSinglePageFeatures() {
     // Configurar navegação suave e highlight ativo
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
-    
+
     // Configurar smooth scroll para links de navegação
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
+
             // Se for um link interno (começa com #)
             if (href.startsWith('#')) {
                 e.preventDefault();
-                
+
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
-                
+
                 if (targetElement) {
                     // Scroll suave para a seção
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
+
                     // Fechar menu móvel se estiver aberto
                     const navMenu = document.getElementById('navMenu');
                     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-                    
+
                     if (navMenu && navMenu.classList.contains('show')) {
                         navMenu.classList.remove('show');
                         if (mobileMenuBtn) {
@@ -178,26 +178,26 @@ function initializeSinglePageFeatures() {
             // Se for um link externo (como equipa.html), deixar navegar normalmente
         });
     });
-    
+
     // Observador de interseção para highlight de seção ativa
     const observerOptions = {
         root: null,
         rootMargin: '-20% 0px -70% 0px',
         threshold: 0.1
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.id;
-                
+
                 // Remover active apenas dos links internos
                 navLinks.forEach(link => {
                     if (link.getAttribute('href').startsWith('#')) {
                         link.classList.remove('active');
                     }
                 });
-                
+
                 // Adicionar active ao link correspondente (apenas links internos)
                 const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (correspondingLink) {
@@ -206,24 +206,24 @@ function initializeSinglePageFeatures() {
             }
         });
     }, observerOptions);
-    
+
     sections.forEach(section => {
         observer.observe(section);
     });
-    
+
     // Configurar menu móvel (mantido do original)
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
-    
+
     if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !isExpanded);
             navMenu.classList.toggle('show');
         });
-        
+
         // Fechar menu ao clicar fora
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn')) {
                 navMenu.classList.remove('show');
                 if (mobileMenuBtn) {
@@ -231,10 +231,10 @@ function initializeSinglePageFeatures() {
                 }
             }
         });
-        
+
         // Fechar menu ao clicar em um link (qualquer link)
         document.querySelectorAll('#navMenu a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 // Pequeno delay para garantir que a navegação aconteça primeiro
                 setTimeout(() => {
                     navMenu.classList.remove('show');
@@ -245,7 +245,7 @@ function initializeSinglePageFeatures() {
             });
         });
     }
-    
+
     // Verificar URL atual para destacar link correto no carregamento
     highlightCurrentLink();
 }
@@ -254,12 +254,12 @@ function highlightCurrentLink() {
     const navLinks = document.querySelectorAll('.nav-link');
     const currentPath = window.location.pathname;
     const currentHash = window.location.hash;
-    
+
     // Remover active de todos os links
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
-    
+
     // Se estamos na página principal e tem hash
     if (currentPath.includes('index.html') || currentPath === '/' || currentPath.includes('.html') === false) {
         if (currentHash) {
@@ -290,14 +290,14 @@ function animateCounter(element, target) {
     const duration = 2000;
     const step = target / (duration / 16);
     let current = 0;
-    
+
     const timer = setInterval(() => {
         current += step;
         if (current >= target) {
             current = target;
             clearInterval(timer);
         }
-        
+
         if (hasPlus && current === target) {
             element.textContent = target.toFixed(0) + '+';
         } else {
@@ -309,14 +309,14 @@ function animateCounter(element, target) {
 // Função para inicializar mapa ISEP (mantida do original)
 function initializeISEPMap() {
     const isepCoords = [41.1780, -8.6081];
-    
+
     const map = L.map('map').setView(isepCoords, 16);
-    
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19
     }).addTo(map);
-    
+
     const customIcon = L.divIcon({
         className: 'custom-marker',
         html: '<i class="fas fa-university"></i>',
@@ -324,7 +324,7 @@ function initializeISEPMap() {
         iconAnchor: [20, 40],
         popupAnchor: [0, -40]
     });
-    
+
     L.marker(isepCoords, { icon: customIcon }).addTo(map)
         .bindPopup(`
             <div class="map-popup">
@@ -335,7 +335,7 @@ function initializeISEPMap() {
             </div>
         `)
         .openPopup();
-    
+
     L.control.scale().addTo(map);
 }
 
@@ -345,7 +345,7 @@ function showNotification(message, type = 'info') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -353,13 +353,13 @@ function showNotification(message, type = 'info') {
         <span>${message}</span>
         <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
-    
+
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
         notification.classList.remove('show');
@@ -367,7 +367,7 @@ function showNotification(message, type = 'info') {
             notification.remove();
         }, 300);
     });
-    
+
     setTimeout(() => {
         if (notification.parentNode) {
             notification.classList.remove('show');
@@ -379,3 +379,29 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
 }
+
+const modalEtica = document.getElementById("modalEtica");
+const modalTermos = document.getElementById("modalTermos");
+
+document.getElementById("openEtica").addEventListener("click", function (e) {
+    e.preventDefault();
+    modalEtica.classList.add("active");
+});
+
+document.getElementById("openTermos").addEventListener("click", function (e) {
+    e.preventDefault();
+    modalTermos.classList.add("active");
+});
+
+document.querySelectorAll("[data-close]").forEach(button => {
+    button.addEventListener("click", () => {
+        modalEtica.classList.remove("active");
+        modalTermos.classList.remove("active");
+    });
+});
+
+window.addEventListener("click", function (e) {
+    if (e.target.classList.contains("custom-modal")) {
+        e.target.classList.remove("active");
+    }
+});
