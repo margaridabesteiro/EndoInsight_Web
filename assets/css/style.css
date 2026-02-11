@@ -1554,3 +1554,48 @@ html {
     border: none;
     cursor: pointer;
 }
+
+
+.search-container {
+    position: relative;
+    margin-left: 20px;
+}
+
+#searchInput {
+    padding: 8px 12px;
+    width: 220px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    font-size: 13px;
+}
+
+.search-suggestions div {
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #333;
+}
+
+.search-suggestions div:hover {
+    background-color: #e0e0e0;
+}
+
+.search-highlight {
+    background-color: #ffeaa7;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

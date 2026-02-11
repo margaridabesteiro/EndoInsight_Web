@@ -422,11 +422,11 @@
         grid-template-columns: 300px 1fr;
         gap: 30px;
     }
-    
+
     .conjunto-content {
         grid-template-columns: 1fr;
     }
-    
+
     .tarefas-grid {
         grid-template-columns: 1fr;
     }
@@ -436,32 +436,32 @@
     .membro-card {
         grid-template-columns: 1fr;
     }
-    
+
     .membro-info {
         padding: 30px;
     }
-    
+
     .timeline::before {
         left: 30px;
     }
-    
+
     .timeline-item {
         flex-direction: row !important;
         justify-content: flex-start;
         margin-left: 60px;
     }
-    
+
     .timeline-date {
         width: auto;
         position: absolute;
         left: -70px;
         top: 0;
     }
-    
+
     .timeline-content {
         width: 100%;
     }
-    
+
     .reconhecimentos-grid {
         grid-template-columns: 1fr;
     }
@@ -471,16 +471,28 @@
     .membro-info {
         padding: 20px;
     }
-    
+
     .membro-info h2 {
         font-size: 1.6rem;
     }
-    
+
     .trabalho-conjunto {
         padding: 20px;
     }
-    
+
     .galeria-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.galeria-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.galeria-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }

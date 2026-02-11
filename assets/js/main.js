@@ -405,3 +405,133 @@ window.addEventListener("click", function (e) {
         e.target.classList.remove("active");
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("searchInput");
+    const suggestionsBox = document.getElementById("searchSuggestions");
+    const searchableElements = document.querySelectorAll("h1, h2, h3, h4, p, li");
+
+    function normalize(text) {
+        return text
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[.,!?;:()]/g, "");
+    }
+
+    function clearHighlights() {
+        document.querySelectorAll("mark.search-highlight").forEach(mark => {
+            const parent = mark.parentNode;
+            parent.replaceChild(document.createTextNode(mark.textContent), mark);
+            parent.normalize();
+        });
+    }
+
+    function highlightAndScroll(term) {
+
+        clearHighlights();
+
+        const normalizedTerm = normalize(term);
+        let firstMatch = null;
+
+        searchableElements.forEach(el => {
+
+            const originalText = el.textContent;
+            const normalizedText = normalize(originalText);
+
+            if (normalizedText.includes(normalizedTerm)) {
+
+                const regex = new RegExp("(" + term + ")", "gi");
+                el.innerHTML = originalText.replace(regex, '<mark class="search-highlight">$1</mark>');
+
+                if (!firstMatch) {
+                    firstMatch = el;
+                }
+            }
+        });
+
+        if (firstMatch) {
+            firstMatch.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
+
+    let wordsSet = new Set();
+
+    searchableElements.forEach(el => {
+        const words = el.textContent.split(/\s+/);
+        words.forEach(word => {
+            const cleaned = normalize(word);
+            if (cleaned.length > 3) {
+                wordsSet.add(cleaned);
+            }
+        });
+    });
+
+    const wordsArray = Array.from(wordsSet);
+
+    searchInput.addEventListener("input", function () {
+
+        const value = normalize(this.value);
+        suggestionsBox.innerHTML = "";
+
+        if (value.length < 2) {
+            suggestionsBox.style.display = "none";
+            clearHighlights();
+            return;
+        }
+
+        const matches = wordsArray.filter(word => word.includes(value));
+
+        if (matches.length === 0) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
+
+        matches.slice(0, 8).forEach(match => {
+
+            const div = document.createElement("div");
+            div.textContent = match;
+
+            div.addEventListener("click", function () {
+                searchInput.value = match;
+                suggestionsBox.style.display = "none";
+                highlightAndScroll(match);
+            });
+
+            suggestionsBox.appendChild(div);
+        });
+
+        suggestionsBox.style.display = "block";
+    });
+
+    searchInput.addEventListener("keyup", function () {
+        if (this.value.trim() === "") {
+            clearHighlights();
+            suggestionsBox.style.display = "none";
+        }
+    });
+
+    searchInput.addEventListener("blur", function () {
+        if (searchInput.value.trim() === "") {
+            clearHighlights();
+        }
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (!e.target.closest(".search-container")) {
+
+            suggestionsBox.style.display = "none";
+
+            if (searchInput.value.trim() === "") {
+                clearHighlights();
+            }
+        }
+    });
+
+
+});
