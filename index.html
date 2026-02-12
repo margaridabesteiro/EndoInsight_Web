@@ -493,6 +493,7 @@
                             Enviar Pedido de Informação
                         </button>
                     </form>
+                    </form>
                 </div>
             </div>
         </section>
@@ -560,6 +561,28 @@
     <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const form = document.getElementById("salesForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            fetch("/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams(formData).toString()
+            })
+                .then(() => {
+                    alert("Obrigado pelo seu contacto. Entraremos em breve em contacto.");
+                    form.reset();
+                })
+                .catch(() => {
+                    alert("Ocorreu um erro. Tente novamente.");
+                });
+        });
+    </script>
 </body>
 
 </html>
