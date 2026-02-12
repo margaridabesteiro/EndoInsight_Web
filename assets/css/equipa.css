@@ -496,3 +496,29 @@
     height: auto;
     border-radius: 8px;
 }
+
+.equipa-hero {
+    background: linear-gradient(135deg, #f8e9f0, #e8f1f8);
+    padding: 80px 0 60px 0;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+}
+
+.equipa-hero h1 {
+    font-size: 2.8rem;
+    color: #d45c8c;
+    margin-bottom: 20px;
+}
+
+.equipa-hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.membro-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
