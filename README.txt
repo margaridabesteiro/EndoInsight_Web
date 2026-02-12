@@ -3,12 +3,12 @@ O EndoInsight é um simulador físico de alta fidelidade para treino da deteçã
 2. Objetivo do Website
 O website foi desenvolvido para:
 • Divulgar o simulador EndoInsight • Explicar o funcionamento técnico do sistema • Demonstrar a integração de sensores FSR • Apresentar dados e resultados experimentais • Servir como página institucional do projeto
-4 4. Tecnologias Utilizadas
+4. Tecnologias Utilizadas
 Frontend
 • HTML5 • CSS3 personalizado • JavaScript
 Integrações
 • Serviço de envio de emails para formulário de contacto • Geração de gráficos para visualização de força em Newton • Exportação de relatórios em PDF
-5 5. Estrutura de Ficheiros
+5. Estrutura de Ficheiros
 /
 ├── assets/
 │   ├── css/      
@@ -17,4 +17,5 @@ Integrações
 │   └── downloads/     
 ├── index.html        
 └── equipa.html      
+
 
