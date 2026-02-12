@@ -522,3 +522,30 @@
     justify-content: center;
     align-items: center;
 }
+
+/* REDUZIR TAMANHO DAS FOTOS NA EQUIPA */
+
+.equipa-membros {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.membro-card {
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.membro-imagem img {
+    width: 200px;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+@media (min-width: 900px) {
+    .membro-card {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+}
