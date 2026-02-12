@@ -517,35 +517,3 @@
     color: #555;
 }
 
-.membro-imagem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* AJUSTE APENAS PARA DESKTOP */
-
-@media (min-width: 992px) {
-
-    .equipa-membros {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .membro-card {
-        display: grid;
-        grid-template-columns: 220px 1fr;
-        gap: 40px;
-        align-items: start;
-        padding: 40px;
-    }
-
-    .membro-imagem img {
-        width: 200px;
-        height: auto;
-        border-radius: 15px;
-    }
-
-
-}
