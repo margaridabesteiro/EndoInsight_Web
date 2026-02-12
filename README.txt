@@ -1,4 +1,4 @@
-﻿# Sobre o Projeto
+﻿Sobre o Projeto
 O EndoInsight é um simulador físico de alta fidelidade para treino da deteção de endometriose através do exame pélvico bimanual. O website apresenta o enquadramento clínico da endometriose, a solução tecnológica desenvolvida, a arquitetura do sistema, a equipa envolvida e os contactos institucionais.
 
 - Objetivo do Website
@@ -20,6 +20,7 @@ Integrações
 │   └── downloads/     
 ├── index.html        
 └── equipa.html      
+
 
 
 
