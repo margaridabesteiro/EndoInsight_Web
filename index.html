@@ -263,15 +263,16 @@
                         </div>
                         <div class="download-card-footer">
                             <a href="downloads/executavelMac/EndoInsight.zip" class="btn btn-secondary download-btn"
-                                download>
+                                data-file="downloads/executavelMac/EndoInsight.zip">
                                 <i class="fas fa-download"></i> Download Aplicação macOS/Linux
                             </a>
                         </div>
                         <div class="download-card-footer">
                             <a href="downloads/executavelWindows/EndoInsight.zip" class="btn btn-secondary download-btn"
-                                download>
+                                data-file="downloads/executavelWindows/EndoInsight.zip">
                                 <i class="fas fa-download"></i> Download Aplicação Windows
                             </a>
+
                         </div>
                     </div>
 
@@ -549,6 +550,28 @@
         </div>
     </div>
 
+    <div class="custom-modal" id="modalDownload">
+        <div class="custom-modal-content"> <button class="custom-modal-close" id="closeDownloadModal">×</button>
+            <h3>Termos e Condições de Download</h3>
+
+            <p>O EndoInsight é um software desenvolvido exclusivamente para fins académicos e educativos.</p>
+            <p>Não deve ser utilizado em contexto clínico real.</p>
+            <p>Os autores não assumem responsabilidade por utilização indevida.</p>
+            <p>Ao aceitar, confirma que leu e concorda com estes termos.</p>
+
+            <div style="margin-top:20px;">
+                <button id="acceptDownload" class="btn btn-primary">
+                    Aceitar e Descarregar
+                </button>
+
+                <button id="cancelDownload" class="btn btn-secondary">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="assets/js/main.js"></script>
@@ -578,6 +601,7 @@
                 });
         });
     </script>
+    <script> let pendingDownload = ""; document.querySelectorAll(".download-btn").forEach(btn => { btn.addEventListener("click", function (e) { e.preventDefault(); pendingDownload = this.getAttribute("data-file"); document.getElementById("modalDownload").style.display = "flex"; }); }); document.getElementById("acceptDownload").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; if (pendingDownload) { window.location.href = pendingDownload; } }); document.getElementById("cancelDownload").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; pendingDownload = ""; }); document.getElementById("closeDownloadModal").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; pendingDownload = ""; }); </script>
 </body>
 
 </html>
