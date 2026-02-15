@@ -187,15 +187,21 @@
                     <div class="components-content">
                         <div class="component-details active" id="anatomical">
                             <div class="component-info">
-                                <h4>Modelo Anatómico Realista</h4>
+                                <h4>Modelo Anatómico</h4>
                                 <ul>
-                                    <li><strong>Material:</strong> Silicone biomimético de grau médico</li>
-                                    <li><strong>Escala:</strong> 1:1 reprodução anatómica feminina</li>
-                                    <li><strong>Nódulos:</strong> Multipla densidade (7-30 Shore A)</li>
-                                    <li><strong>Áreas:</strong> Útero, ovários, ligamentos uterossacrais</li>
-                                    <li><strong>Substituição:</strong> Nódulos intercambiáveis</li>
+                                    <li><strong>Estrutura:</strong> Modelo anatómico feminino em escala aumentada para
+                                        facilitar a visualização e integração eletrónica</li>
+                                    <li><strong>Material:</strong> Estrutura rígida com revestimento em silicone para
+                                        simulação tátil</li>
+                                    <li><strong>Simulação de nódulos:</strong> Balões internos insufláveis controlados
+                                        por bomba de ar</li>
+                                    <li><strong>Controlo pneumático:</strong> Ativação dos balões através de relé
+                                        comandado pelo Arduino</li>
+                                    <li><strong>Integração:</strong> Sensores FSR incorporados nas zonas de palpação
+                                    </li>
                                 </ul>
                             </div>
+
                             <div class="component-image">
                                 <img src="assets/images/modeloAnatomico.png" alt="Modelo anatómico do simulador">
                             </div>
@@ -205,13 +211,18 @@
                             <div class="component-info">
                                 <h4>Sistema Eletrónico</h4>
                                 <ul>
-                                    <li><strong>Sensores:</strong> 24 FSR (Force Sensitive Resistors)</li>
-                                    <li><strong>Microcontrolador:</strong> ESP32 com Wi-Fi/Bluetooth</li>
-                                    <li><strong>Aquisição:</strong> Taxa de amostragem de 100Hz</li>
-                                    <li><strong>Comunicação:</strong> USB Serial + BLE</li>
-                                    <li><strong>Alimentação:</strong> USB 5V / Bateria Li-Po</li>
+                                    <li><strong>Sensores:</strong> 5 FSR (Force Sensitive Resistors) posicionados nas
+                                        zonas anatómicas de interesse</li>
+                                    <li><strong>Microcontrolador:</strong> Arduino Uno para aquisição dos sinais
+                                        analógicos</li>
+                                    <li><strong>Atuação:</strong> Módulo relé para controlo da bomba de ar</li>
+                                    <li><strong>Sistema pneumático:</strong> Bomba de ar DC para simulação de variações
+                                        internas de pressão</li>
+                                    <li><strong>Comunicação:</strong> Ligação USB Serial direta ao software</li>
+                                    <li><strong>Alimentação:</strong> 5V através da porta USB</li>
                                 </ul>
                             </div>
+
                             <div class="component-image">
                                 <img src="assets/images/IntegracaoComponentes.png" alt="PCB do sistema eletrónico">
                             </div>
@@ -221,13 +232,15 @@
                             <div class="component-info">
                                 <h4>Software de Interface</h4>
                                 <ul>
-                                    <li><strong>Linguagem:</strong> Python 3.8+</li>
-                                    <li><strong>GUI:</strong> PyQt5 para interface moderna</li>
-                                    <li><strong>Visualização:</strong> OpenCV para processamento de imagem</li>
-                                    <li><strong>Relatórios:</strong> Geração automática em PDF</li>
-                                    <li><strong>Base de dados:</strong> SQLite para armazenamento de sessões</li>
+                                    <li><strong>Linguagem:</strong> Python 3.11+</li>
+                                    <li><strong>Interface:</strong> HTML, CSS e JavaScript executados em WebView</li>
+                                    <li><strong>Comunicação:</strong> Leitura da porta série via PySerial</li>
+                                    <li><strong>Processamento:</strong> Dados recebidos exclusivamente do Arduino</li>
+                                    <li><strong>Armazenamento:</strong> Sem base de dados, funcionamento dependente de
+                                        hardware real</li>
                                 </ul>
                             </div>
+
                             <div class="component-image">
                                 <img src="assets/images/Interface.png" alt="Interface do software">
                             </div>
