@@ -618,7 +618,48 @@
                 });
         });
     </script>
-    <script> let pendingDownload = ""; document.querySelectorAll(".download-btn").forEach(btn => { btn.addEventListener("click", function (e) { e.preventDefault(); pendingDownload = this.getAttribute("data-file"); document.getElementById("modalDownload").style.display = "flex"; }); }); document.getElementById("acceptDownload").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; if (pendingDownload) { window.location.href = pendingDownload; } }); document.getElementById("cancelDownload").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; pendingDownload = ""; }); document.getElementById("closeDownloadModal").addEventListener("click", function () { document.getElementById("modalDownload").style.display = "none"; pendingDownload = ""; }); </script>
-</body>
 
-</html>
+    <script>
+        let pendingDownload = "";
+
+        document.querySelectorAll(".download-btn").forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                pendingDownload = this.getAttribute("data-file");
+                document.getElementById("modalDownload").style.display = "flex";
+            });
+        });
+
+        document.getElementById("acceptDownload").addEventListener("click", function () {
+            document.getElementById("modalDownload").style.display = "none";
+
+            if (pendingDownload) {
+                // Se for PDF
+                if (pendingDownload.toLowerCase().endsWith(".pdf")) {
+                    // Abre noutra tab
+                    window.open(pendingDownload, "_blank");
+
+                    // Força download automático
+                    const link = document.createElement("a");
+                    link.href = pendingDownload;
+                    link.setAttribute("download", "");
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    // Mantém comportamento normal para ZIP e executáveis
+                    window.location.href = pendingDownload;
+                }
+            }
+        });
+
+        document.getElementById("cancelDownload").addEventListener("click", function () {
+            document.getElementById("modalDownload").style.display = "none";
+            pendingDownload = "";
+        });
+
+        document.getElementById("closeDownloadModal").addEventListener("click", function () {
+            document.getElementById("modalDownload").style.display = "none";
+            pendingDownload = "";
+        });
+    </script>
